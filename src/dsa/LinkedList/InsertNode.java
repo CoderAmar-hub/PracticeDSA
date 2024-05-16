@@ -1,4 +1,4 @@
-package LinkedList;
+package dsa.LinkedList;
 
 public class InsertNode {
     public static void main(String[] args) {
@@ -9,7 +9,9 @@ public class InsertNode {
         ConvertArrToLL.printLL(head);
         head = insertTail(head, 27);
         ConvertArrToLL.printLL(head);
-        head = insertAtPosition(head, 36, 10);
+        head = insertAtPosition(head, 36, 9);
+        ConvertArrToLL.printLL(head);
+        head = insertBeforeValue(head, 99, 98);
         ConvertArrToLL.printLL(head);
     }
 
@@ -37,13 +39,33 @@ public class InsertNode {
         }
         int count = 0;
         Node<Integer> temp = head;
-        while(temp.next != null){
-            temp = temp.next;
+        while(temp != null){
             count++;
             if(count == pos-1){
                 Node<Integer> newNode = new Node<Integer>(data, temp.next);
                 temp.next = newNode;
             }
+            temp = temp.next;
+        }
+        return head;
+    }
+
+    private static Node<Integer> insertBeforeValue(Node<Integer> head, int data, int value){
+        Node<Integer> temp = head;
+        Node<Integer> prev = null;
+        while(temp != null){
+            if(temp.data == value){
+                Node<Integer> node = new Node<Integer>(data, temp);
+                if(prev == null){
+                    return node;
+                } else {
+                    node.next = prev.next;
+                    prev.next = node;
+                    break;
+                }
+            }
+            prev = temp;
+            temp = temp.next;
         }
         return head;
     }

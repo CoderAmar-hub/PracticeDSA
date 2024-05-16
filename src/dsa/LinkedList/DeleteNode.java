@@ -1,4 +1,4 @@
-package LinkedList;
+package dsa.LinkedList;
 
 public class DeleteNode {
     public static void main(String[] args) {
@@ -72,5 +72,54 @@ public class DeleteNode {
             node = node.next;
         }
         return head;
+    }
+
+    /**
+     * Definition for singly-linked list.
+     * public class Node<Integer> {
+     *     int val;
+     *     Node<Integer> next;
+     *     Node<Integer>() {}
+     *     Node<Integer>(int val) { this.val = val; }
+     *     Node<Integer>(int val, Node<Integer> next) { this.val = val; this.next = next; }
+     * }
+     */
+
+    public static class AddTwoNum {
+        public static Node<Integer> addTwoNumbers(Node<Integer> l1, Node<Integer> l2) {
+            Node<Integer> dummyNode = new Node<Integer>(-1);
+            Node<Integer> temp = dummyNode;
+            int carry = 0, sum = 0;
+            while(l1 != null || l2 != null){
+                sum = carry;
+                if(l1 != null){
+                    sum += l1.data;
+                    l1 = l1.next;
+                }
+                if(l2 != null){
+                    sum += l2.data;
+                    l2 = l2.next;
+                }
+                Node<Integer> node = new Node<Integer>(sum%10, null);
+                carry = sum/10;
+                temp.next = node;
+                temp = temp.next;
+            }
+            if(carry > 0){
+                Node<Integer> node = new Node<Integer>(carry, null);
+                temp.next = node;
+                temp = temp.next;
+            }
+            return dummyNode.next;
+        }
+
+        public static void main(String[] args) {
+            int[] arr1 = {5, 9, 7};
+            int[] arr2 = {6, 8, 21};
+            Node<Integer> list1 = ConvertArrToLL.convertToLL(arr1);
+            Node<Integer> list2 = ConvertArrToLL.convertToLL(arr2);
+            Node<Integer> head = addTwoNumbers(list1, list2);
+            ConvertArrToLL.printLL(head);
+        }
     }
 }

@@ -16,11 +16,11 @@ public class ListToArray {
     public static void main(String[] args)
     {
 
-        // Creating a LinkedList.LinkedList of string type by
+        // Creating a dsa.LinkedList.dsa.LinkedList of string type by
         // declaring object of List
         List<String> list = new LinkedList<String>();
 
-        // Adding elements to above LinkedList.LinkedList
+        // Adding elements to above dsa.LinkedList.dsa.LinkedList
         // using add() method
         list.add("Geeks");
         list.add("for");
